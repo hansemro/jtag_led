@@ -1,0 +1,62 @@
+Removes 1149.6-related attributes unsupported by UrJTAG.
+
+To patch, run the following:
+patch xc7a200t_fbg484.bsd xc7a200t_fbg484.bsd.patch
+
+@@ -460,7 +460,6 @@
+ -- Use Statements
+ 
+ use STD_1149_1_2001.all;
+-use STD_1149_6_2003.all;
+ 
+ -- Component Conformance Statement(s)
+ 
+@@ -823,19 +822,6 @@
+ 	"IO_AB22:AB22";
+ 
+ 
+--- Grouped Port Identification
+-
+-attribute PORT_GROUPING of XC7A200T_FBG484 : entity is
+-"DIFFERENTIAL_VOLTAGE (" &
+-"(MGTPRXP0_216, MGTPRXN0_216), " &
+-"(MGTPRXP1_216, MGTPRXN1_216), " &
+-"(MGTPRXP2_216, MGTPRXN2_216), " &
+-"(MGTPRXP3_216, MGTPRXN3_216), " &
+-"(MGTPTXP0_216, MGTPTXN0_216), " &
+-"(MGTPTXP1_216, MGTPTXN1_216), " &
+-"(MGTPTXP2_216, MGTPTXN2_216), " &
+-"(MGTPTXP3_216, MGTPTXN3_216))";
+-
+ -- Scan Port Identification
+ 
+ attribute TAP_SCAN_IN    of TDI : signal is true;
+@@ -2612,28 +2598,6 @@
+ 	"1656 (BC_2, *, internal, X)," &
+ 	"1657 (BC_2, *, internal, X)";
+ 
+-
+--- Advanced I/O Description
+-
+-attribute AIO_COMPONENT_CONFORMANCE of XC7A200T_FBG484 : entity is
+-	"STD_1149_6_2003";
+-
+-attribute AIO_EXTEST_Pulse_Execution of XC7A200T_FBG484 : entity is
+-	"Wait_Duration TCK 15";
+-
+-attribute AIO_EXTEST_Train_Execution of XC7A200T_FBG484 : entity is
+-	"train 30, maximum_time 120.0e-6";
+-
+-attribute AIO_Pin_Behavior of XC7A200T_FBG484 : entity is
+-"MGTPRXP0_216 : LP_time=22.5e-9 HP_time=45.0e-9; " &
+-"MGTPRXP1_216 : LP_time=22.5e-9 HP_time=45.0e-9; " &
+-"MGTPRXP2_216 : LP_time=22.5e-9 HP_time=45.0e-9; " &
+-"MGTPRXP3_216 : LP_time=22.5e-9 HP_time=45.0e-9; " &
+-"MGTPTXP0_216; " &
+-"MGTPTXP1_216; " &
+-"MGTPTXP2_216; " &
+-"MGTPTXP3_216 ";
+-
+ -- Design Warning Section
+ 
+ attribute DESIGN_WARNING of XC7A200T_FBG484 : entity is
