@@ -29,6 +29,7 @@ ifeq (${JTAG_LINK},digilent_hs2)
 		-c "shutdown"
 else
 ifeq (${JTAG_LINK},ft2232)
+	openocd -c "adapter driver ftdi" \
 		-c "ftdi vid_pid 0x0403 0x6010" \
 		-c "ftdi channel 0" \
 		-c "reset_config none" \
