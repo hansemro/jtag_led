@@ -45,12 +45,12 @@ patch -u xc7a200t_fbg484.bsd ../jtag/xc7a200t_fbg484.bsd.patch
 
 ## Controlling LEDs
 
-Connect to the FPGA with UrJTAG:
+Connect to the FPGA with (patched) UrJTAG:
 
 ```
 $ jtag
 jtag> bsdl path .
-jtag> cable ft2232 VID=0x0403 PID=0x6010
+jtag> cable DigilentHS2 VID=0x0403 PID=0x6014
 Connected to libftdi driver.
 jtag> detect
 IR length: 6
