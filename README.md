@@ -79,7 +79,7 @@ jtag> shift dr
 jtag> dr 1111
 jtag> shift dr
 
-# 1st and 3rd on
+# 2nd and 4th on
 jtag> dr 0101
 jtag> shift dr
 ```
