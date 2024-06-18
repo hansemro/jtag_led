@@ -32,12 +32,22 @@ module jtag_led #(
     );
     
     reg [REG_LENGTH-1:0] data_register;
+
+//`define LS
     
+`ifdef LS
     always @(posedge jtag_drck)
         if (jtag_shift) begin
             data_register <= {data_register[REG_LENGTH-2:0],jtag_tdi};
             jtag_tdo <= data_register[REG_LENGTH-1];
         end
+`else
+    always @(posedge jtag_drck)
+        if (jtag_shift) begin
+            data_register <= {jtag_tdi,data_register[REG_LENGTH-1:1]};
+            jtag_tdo <= data_register[0];
+        end
+`endif
     
     assign led[0] = !data_register[0];
     assign led[1] = !data_register[1];
