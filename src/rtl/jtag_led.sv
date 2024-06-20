@@ -35,8 +35,8 @@ module jtag_led #(
 
     always @(posedge jtag_drck)
         if (jtag_shift) begin
-            data_register <= {data_register[REG_LENGTH-2:0],jtag_tdi};
-            jtag_tdo <= data_register[REG_LENGTH-1];
+            data_register <= {jtag_tdi,data_register[REG_LENGTH-1:1]};
+            jtag_tdo <= data_register[0];
         end
 
     assign led[0] = !data_register[0];
