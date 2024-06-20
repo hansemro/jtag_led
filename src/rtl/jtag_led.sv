@@ -9,12 +9,12 @@ module jtag_led #(
     ) (
         output wire [3:0] led
     );
-    
+
     wire jtag_drck;
     wire jtag_shift;
     wire jtag_tdi;
     reg jtag_tdo;
-    
+
     BSCANE2 #(
         .JTAG_CHAIN(USER_PORT)
     ) bscane (
@@ -30,19 +30,19 @@ module jtag_led #(
         .TCK(),
         .TMS()
     );
-    
+
     reg [REG_LENGTH-1:0] data_register;
-    
+
     always @(posedge jtag_drck)
         if (jtag_shift) begin
             data_register <= {data_register[REG_LENGTH-2:0],jtag_tdi};
             jtag_tdo <= data_register[REG_LENGTH-1];
         end
-    
+
     assign led[0] = !data_register[0];
     assign led[1] = !data_register[1];
     assign led[2] = !data_register[2];
     assign led[3] = !data_register[3];
-    
+
 endmodule
 
